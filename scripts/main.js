@@ -10,7 +10,7 @@ $(document).ready(function () {
 
         if (!isAnswered) group1Completed = false;
 
-        // 正解済みの場合のみ解答表示枠と矢印アイコンを表示
+        // ボタンの動作とアイコンを設定
         const buttonAction = isAnswered
             ? `toggleAnswerDisplay('${answerKey}')`
             : `location.href='question_pages/question1-${i}.html'`;
@@ -20,7 +20,7 @@ $(document).ready(function () {
         $('#question-buttons-group1').append(
             `<div class="mb-3">
                 <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" onclick="${buttonAction}">
-                    問1-${i}の${isAnswered ? '解答を見直す <i class="fas ${buttonIcon}"></i>' : '解答を入力する <i class="fas fa-pencil-alt"></i>'}
+                    <i class="fas ${buttonIcon}"></i> 問1-${i}の${isAnswered ? '解答を見直す' : '解答を入力する'}
                 </button>
                 ${isAnswered ? `<div class="answer-display" id="answer-display-${answerKey}" style="display: none;">${isAnswered || ''}</div>` : ''}
             </div>`
@@ -54,7 +54,7 @@ $(document).ready(function () {
             $('#question-buttons-group2').append(
                 `<div class="mb-3">
                     <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" onclick="${buttonAction}">
-                        問2-${i}の${isAnswered ? '解答を見直す <i class="fas ${buttonIcon}"></i>' : '解答を入力する <i class="fas fa-pencil-alt"></i>'}
+                        <i class="fas ${buttonIcon}"></i> 問2-${i}の${isAnswered ? '解答を見直す' : '解答を入力する'}
                     </button>
                     ${isAnswered ? `<div class="answer-display" id="answer-display-${answerKey}" style="display: none;">${isAnswered || ''}</div>` : ''}
                 </div>`
@@ -66,7 +66,7 @@ $(document).ready(function () {
             window.addEventListener("deviceorientation", function(event) {
                 if (Math.abs(event.beta) > 150) { // デバイスがほぼ上下逆さの場合
                     if ($('#final-question-button').length === 0) {
-                        $('body').append('<button id="final-question-button" class="btn btn-warning mt-5">最終問題に挑戦する <i class="fas fa-flag-checkered"></i></button>');
+                        $('body').append('<button id="final-question-button" class="btn btn-warning mt-5"><i class="fas fa-flag-checkered"></i> 最終問題に挑戦する</button>');
                     }
                 }
             });
@@ -79,20 +79,20 @@ $(document).ready(function () {
     // 解答見直しボタンの開閉機能
     $('.review-btn').click(function () {
         const $answerDisplay = $(this).next('.answer-display');
-        $answerDisplay.slideToggle();
-
-        // 矢印の向きを変更
-        const $icon = $(this).find('i');
-        $icon.toggleClass('fa-chevron-down fa-chevron-up');
+        if ($answerDisplay.length) {
+            $answerDisplay.slideToggle();
+            const $icon = $(this).find('i');
+            $icon.toggleClass('fa-chevron-down fa-chevron-up');
+        }
     });
 });
 
 // 解答表示の開閉関数
 function toggleAnswerDisplay(answerKey) {
     const $answerDisplay = $(`#answer-display-${answerKey}`);
-    $answerDisplay.slideToggle();
-
-    // 矢印の向きを変更
-    const $icon = $(`#answer-display-${answerKey}`).prev().find('i');
-    $icon.toggleClass('fa-chevron-down fa-chevron-up');
+    if ($answerDisplay.length) {
+        $answerDisplay.slideToggle();
+        const $icon = $(`#answer-display-${answerKey}`).prev().find('i');
+        $icon.toggleClass('fa-chevron-down fa-chevron-up');
+    }
 }
