@@ -12,10 +12,8 @@ $(document).ready(function () {
             return;
         }
 
-        // 遅延して問題文を設定
-        setTimeout(() => {
-            $('#question-text').text(question.question).show();
-        }, 100);
+        // 問題文の設定
+        $('#question-text').text(question.question).show();
 
         // ヒントボタンの機能
         $('#view-hint').click(function () {

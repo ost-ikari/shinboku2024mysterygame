@@ -11,30 +11,20 @@
 </head>
 <body class="container mt-5">
     <h1 class="text-center mb-4">リアル脱出ゲームへようこそ</h1>
-    <ul class="nav nav-tabs" id="gameTabs">
+    <ul class="nav nav-tabs" id="gameTabs" style="display: none;">
         <li class="nav-item">
-            <a class="nav-link active" id="tab-group1" data-toggle="tab" href="#group1">問1グループ</a>
+            <a class="nav-link" id="tab-group1" data-toggle="tab" href="#group1">問1グループ</a>
         </li>
         <li class="nav-item" id="tab-group2" style="display: none;">
             <a class="nav-link" id="tab-group2-link" data-toggle="tab" href="#group2">問2グループ</a>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane fade show active" id="group1">
-            <div id="question-buttons-group1" class="text-center mt-4">
-                <!-- 問1-1〜問1-5のボタンがここに挿入されます -->
-                <div class="mb-3">
-                    <button class="btn custom-button review-btn" id="btn-question1-1">
-                        <i class="fas fa-pencil-alt"></i> 問1-1の解答を入力する
-                    </button>
-                </div>
-                <!-- 他の問題も同様に配置 -->
-            </div>
+        <div class="tab-pane fade" id="group1">
+            <div id="question-buttons-group1" class="text-center mt-4"></div>
         </div>
         <div class="tab-pane fade" id="group2">
-            <div id="question-buttons-group2" class="text-center mt-4">
-                <!-- 問2-1〜問2-5のボタンがここに挿入されます -->
-            </div>
+            <div id="question-buttons-group2" class="text-center mt-4"></div>
         </div>
     </div>
 

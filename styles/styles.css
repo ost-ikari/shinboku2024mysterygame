@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(135deg, #000000, #0d47a1);
     color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -10,23 +10,35 @@ body {
     text-align: center;
 }
 
-.custom-button {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* カスタムカラーのグラデーション */
-    color: #ffffff;
-    border: none;
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin: 10px;
     padding: 10px 20px;
     font-size: 1.2rem;
-    margin: 10px;
-    cursor: pointer;
-    transition: background 0.3s ease;
 }
 
-.custom-button:hover {
-    background: linear-gradient(135deg, #feb47b, #ff7e5f); /* ホバー時のカラー反転 */
+.btn-primary {
+    background: linear-gradient(135deg, #4a90e2, #0072bc);
+    border: none;
 }
 
-.review-btn i {
-    margin-right: 8px;
+.btn-success {
+    background: linear-gradient(135deg, #5cb85c, #4cae4c);
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #d9534f, #c9302c);
+    border: none;
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #5bc0de, #31b0d5);
+    border: none;
 }
 
 .answer-display {
@@ -36,6 +48,10 @@ body {
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
+}
+
+.review-btn i {
+    margin-left: 8px;
 }
 
 .alert {
