@@ -8,6 +8,7 @@ $(document).ready(function () {
         const answerKey = `answer1-${i}`;
         const isAnswered = localStorage.getItem(answerKey);
 
+        // 問1-1～問1-5が全て正解でない場合、問1グループは未完了
         if (!isAnswered) group1Completed = false;
 
         // 問1-1～問1-5のボタンを表示
@@ -21,14 +22,10 @@ $(document).ready(function () {
         );
     }
 
-    // 最初から問1タブを表示
-    $('#gameTabs').show();
-    $('#tab-group1').show();
-    $('#tab-group1').addClass('active');
-    $('#group1').addClass('show active');
-
-    // 問1グループが全問正解している場合のみ問2タブを表示
+    // 問1グループが全問正解している場合のみタブを表示
     if (group1Completed) {
+        $('#gameTabs').show();
+        $('#tab-group1').show();
         $('#tab-group2').show();
 
         // 問2グループのボタン表示
@@ -62,6 +59,9 @@ $(document).ready(function () {
 
         // 問2タブを選択した状態で表示
         $('#tab-group2-link').tab('show');
+    } else {
+        // タブは非表示のまま
+        $('#gameTabs').hide();
     }
 
     // 解答見直しボタンの開閉機能
