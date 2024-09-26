@@ -8,9 +8,28 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles/styles.css" rel="stylesheet">
+    <style>
+        .icon-container {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #28a745;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .icon-container i {
+            color: #ffffff;
+            font-size: 100px;
+        }
+    </style>
 </head>
 <body class="container mt-5 text-center">
-    <i class="fas fa-check-circle" style="font-size: 100px; color: #28a745;"></i>
+    <div class="icon-container">
+        <i class="fas fa-check-circle"></i>
+    </div>
     <h1 class="mb-4">正解です！</h1>
     <button class="btn btn-primary" onclick="location.href='../index.html'">次へ進む</button>
 </body>
