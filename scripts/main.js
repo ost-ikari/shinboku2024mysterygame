@@ -10,13 +10,17 @@ $(document).ready(function () {
 
         if (!isAnswered) group1Completed = false;
 
-        // 問1-1～問1-5のボタンを表示
+        // 解答済みのボタンの挙動を変更
+        const buttonAction = isAnswered
+            ? `toggleAnswerDisplay('${answerKey}')`
+            : `location.href='question_pages/question1-${i}.html'`;
+
         $('#question-buttons-group1').append(
             `<div class="mb-3">
-                <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="1" data-question="${i}" onclick="location.href='question_pages/question1-${i}.html'">
+                <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" onclick="${buttonAction}">
                     問1-${i}の${isAnswered ? '解答を見直す <i class="fas fa-chevron-down"></i>' : '解答を入力する'}
                 </button>
-                <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
+                <div class="answer-display" id="answer-display-${answerKey}" style="display: none;">${isAnswered || ''}</div>
             </div>`
         );
     }
@@ -39,12 +43,16 @@ $(document).ready(function () {
 
             if (!isAnswered) group2Completed = false;
 
+            const buttonAction = isAnswered
+                ? `toggleAnswerDisplay('${answerKey}')`
+                : `location.href='question_pages/question2-${i}.html'`;
+
             $('#question-buttons-group2').append(
                 `<div class="mb-3">
-                    <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="2" data-question="${i}" onclick="location.href='question_pages/question2-${i}.html'">
+                    <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" onclick="${buttonAction}">
                         問2-${i}の${isAnswered ? '解答を見直す <i class="fas fa-chevron-down"></i>' : '解答を入力する'}
                     </button>
-                    <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
+                    <div class="answer-display" id="answer-display-${answerKey}" style="display: none;">${isAnswered || ''}</div>
                 </div>`
             );
         }
@@ -72,3 +80,9 @@ $(document).ready(function () {
         $icon.toggleClass('fa-chevron-down fa-chevron-up');
     });
 });
+
+// 解答表示の開閉関数
+function toggleAnswerDisplay(answerKey) {
+    const $answerDisplay = $(`#answer-display-${answerKey}`);
+    $answerDisplay.slideToggle();
+}
