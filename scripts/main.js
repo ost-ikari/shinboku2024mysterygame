@@ -8,8 +8,10 @@ $(document).ready(function () {
         const answerKey = `answer1-${i}`;
         const isAnswered = localStorage.getItem(answerKey);
 
+        // 問1-1～問1-5が全て正解でない場合、問1グループは未完了
         if (!isAnswered) group1Completed = false;
 
+        // 問1-1～問1-5のボタンを表示
         $('#question-buttons-group1').append(
             `<div class="mb-3">
                 <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="1" data-question="${i}" onclick="location.href='question_pages/question1-${i}.html'">
@@ -20,17 +22,13 @@ $(document).ready(function () {
         );
     }
 
-    // 問1グループのボタンがあれば問1のタブを表示
-    if ($('#question-buttons-group1').children().length > 0) {
-        $('#gameTabs').show();
-        $('#tab-group1').addClass('active');
-        $('#group1').addClass('show active');
-    }
-
-    // 問1グループが全問正解している場合のみ問2グループのタブを表示
+    // 問1グループが全問正解している場合のみタブを表示
     if (group1Completed) {
+        $('#gameTabs').show();
+        $('#tab-group1').show();
         $('#tab-group2').show();
 
+        // 問2グループのボタン表示
         let group2Completed = true; // 問2グループの解答完了状況
         for (let i = 1; i <= group2Questions; i++) {
             const answerKey = `answer2-${i}`;
@@ -48,7 +46,7 @@ $(document).ready(function () {
             );
         }
 
-        // 問2が全問正解している場合、デバイスの上下反転で最終問題ボタン表示
+        // 問2グループが全問正解している場合、スマホの上下反転で最終問題ボタンを表示
         if (group2Completed) {
             window.addEventListener("deviceorientation", function(event) {
                 if (Math.abs(event.beta) > 150) { // デバイスがほぼ上下逆さの場合
@@ -58,6 +56,12 @@ $(document).ready(function () {
                 }
             });
         }
+
+        // 問2タブを選択した状態で表示
+        $('#tab-group2-link').tab('show');
+    } else {
+        // タブは非表示のまま
+        $('#gameTabs').hide();
     }
 
     // 解答見直しボタンの開閉機能
