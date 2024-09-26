@@ -12,7 +12,7 @@ $(document).ready(function () {
 
         $('#question-buttons-group1').append(
             `<div class="mb-3">
-                <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="1" data-question="${i}">
+                <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="1" data-question="${i}" onclick="location.href='question_pages/question1-${i}.html'">
                     問1-${i}の${isAnswered ? '解答を見直す <i class="fas fa-chevron-down"></i>' : '解答を入力する'}
                 </button>
                 <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
@@ -20,13 +20,15 @@ $(document).ready(function () {
         );
     }
 
-    // 問1グループが全問正解している場合に問2タブを表示
+    // 問1グループが全問正解している場合にタブを表示
     if (group1Completed) {
-        $('#tab-group2').show();
-    }
+        $('#gameTabs').show();
+        $('#tab-group1').addClass('active');
+        $('#group1').addClass('show active');
 
-    // 問2グループのボタン表示（問1が全問正解後にのみ表示）
-    if (group1Completed) {
+        // 問2グループのタブを表示
+        $('#tab-group2').show();
+
         let group2Completed = true; // 問2グループの解答完了状況
         for (let i = 1; i <= group2Questions; i++) {
             const answerKey = `answer2-${i}`;
@@ -36,7 +38,7 @@ $(document).ready(function () {
 
             $('#question-buttons-group2').append(
                 `<div class="mb-3">
-                    <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="2" data-question="${i}">
+                    <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="2" data-question="${i}" onclick="location.href='question_pages/question2-${i}.html'">
                         問2-${i}の${isAnswered ? '解答を見直す <i class="fas fa-chevron-down"></i>' : '解答を入力する'}
                     </button>
                     <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
