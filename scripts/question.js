@@ -15,6 +15,8 @@ $(document).ready(function () {
         $('#submit-answer').click(function () {
             const userAnswer = $('#answer-input').val().trim();
             if (userAnswer === question.answer) {
+                // 解答をローカルストレージに保存
+                localStorage.setItem(`answer${pageNumber}`, userAnswer);
                 localStorage.setItem('currentQuestion', Math.max(pageNumber + 1, parseInt(localStorage.getItem('currentQuestion')) || 1));
                 window.location.href = '../question_pages/correct.html';
             } else {
