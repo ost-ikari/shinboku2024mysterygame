@@ -61,10 +61,10 @@ $(document).ready(function () {
             );
         }
 
-        // 問2グループが全問正解している場合、スマホの上下反転で最終問題ボタンを表示
+        // 問2グループが全問正解している場合、スマホが横持ちになったときに最終問題ボタンを表示
         if (group2Completed) {
-            window.addEventListener("deviceorientation", function(event) {
-                if (Math.abs(event.beta) > 150) { // デバイスがほぼ上下逆さの場合
+            window.addEventListener("orientationchange", function() {
+                if (window.matchMedia("(orientation: landscape)").matches) {
                     if ($('#final-question-button').length === 0) {
                         $('body').append('<button id="final-question-button" class="btn btn-warning mt-5"><i class="fas fa-flag-checkered"></i> 最終問題に挑戦する</button>');
                     }
@@ -79,10 +79,14 @@ $(document).ready(function () {
     // 解答見直しボタンの開閉機能
     $('.review-btn').click(function () {
         const $answerDisplay = $(this).next('.answer-display');
-        if ($answerDisplay.length) {
-            $answerDisplay.slideToggle();
+        if ($answerDisplay.length && !$answerDisplay.is(':visible')) {
+            $answerDisplay.slideDown();
             const $icon = $(this).find('i');
-            $icon.toggleClass('fa-chevron-down fa-chevron-up');
+            $icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        } else if ($answerDisplay.length) {
+            $answerDisplay.slideUp();
+            const $icon = $(this).find('i');
+            $icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
         }
     });
 });
@@ -90,9 +94,13 @@ $(document).ready(function () {
 // 解答表示の開閉関数
 function toggleAnswerDisplay(answerKey) {
     const $answerDisplay = $(`#answer-display-${answerKey}`);
-    if ($answerDisplay.length) {
-        $answerDisplay.slideToggle();
+    if ($answerDisplay.length && !$answerDisplay.is(':visible')) {
+        $answerDisplay.slideDown();
         const $icon = $(`#answer-display-${answerKey}`).prev().find('i');
-        $icon.toggleClass('fa-chevron-down fa-chevron-up');
+        $icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+    } else if ($answerDisplay.length) {
+        $answerDisplay.slideUp();
+        const $icon = $(`#answer-display-${answerKey}`).prev().find('i');
+        $icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
     }
 }
