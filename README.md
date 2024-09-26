@@ -1,1 +1,0 @@
-# shinboku2024mysterygame
