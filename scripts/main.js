@@ -10,18 +10,19 @@ $(document).ready(function () {
 
         if (!isAnswered) group1Completed = false;
 
-        // ボタンの動作とアイコンを設定
-        const buttonIcon = isAnswered ? 'fa-chevron-down' : 'fa-pencil-alt';
+        // 正解済みの場合のみ解答表示枠と矢印アイコンを表示
         const buttonAction = isAnswered
-            ? ''
+            ? `toggleAnswerDisplay('${answerKey}')`
             : `location.href='question_pages/question1-${i}.html'`;
+
+        const buttonIcon = isAnswered ? 'fa-chevron-down' : 'fa-pencil-alt';
 
         $('#question-buttons-group1').append(
             `<div class="mb-3">
-                <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="1" data-question="${i}" onclick="${buttonAction}">
-                    問1-${i}の${isAnswered ? '解答を見直す <i class="fas ${buttonIcon}"></i>' : '解答を入力する <i class="fas ${buttonIcon}"></i>'}
+                <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" onclick="${buttonAction}">
+                    問1-${i}の${isAnswered ? '解答を見直す <i class="fas ${buttonIcon}"></i>' : '解答を入力する <i class="fas fa-pencil-alt"></i>'}
                 </button>
-                <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
+                ${isAnswered ? `<div class="answer-display" id="answer-display-${answerKey}" style="display: none;">${isAnswered || ''}</div>` : ''}
             </div>`
         );
     }
@@ -44,17 +45,18 @@ $(document).ready(function () {
 
             if (!isAnswered) group2Completed = false;
 
-            const buttonIcon = isAnswered ? 'fa-chevron-down' : 'fa-pencil-alt';
             const buttonAction = isAnswered
-                ? ''
+                ? `toggleAnswerDisplay('${answerKey}')`
                 : `location.href='question_pages/question2-${i}.html'`;
+
+            const buttonIcon = isAnswered ? 'fa-chevron-down' : 'fa-pencil-alt';
 
             $('#question-buttons-group2').append(
                 `<div class="mb-3">
-                    <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="2" data-question="${i}" onclick="${buttonAction}">
-                        問2-${i}の${isAnswered ? '解答を見直す <i class="fas ${buttonIcon}"></i>' : '解答を入力する <i class="fas ${buttonIcon}"></i>'}
+                    <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" onclick="${buttonAction}">
+                        問2-${i}の${isAnswered ? '解答を見直す <i class="fas ${buttonIcon}"></i>' : '解答を入力する <i class="fas fa-pencil-alt"></i>'}
                     </button>
-                    <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
+                    ${isAnswered ? `<div class="answer-display" id="answer-display-${answerKey}" style="display: none;">${isAnswered || ''}</div>` : ''}
                 </div>`
             );
         }
@@ -84,3 +86,13 @@ $(document).ready(function () {
         $icon.toggleClass('fa-chevron-down fa-chevron-up');
     });
 });
+
+// 解答表示の開閉関数
+function toggleAnswerDisplay(answerKey) {
+    const $answerDisplay = $(`#answer-display-${answerKey}`);
+    $answerDisplay.slideToggle();
+
+    // 矢印の向きを変更
+    const $icon = $(`#answer-display-${answerKey}`).prev().find('i');
+    $icon.toggleClass('fa-chevron-down fa-chevron-up');
+}
