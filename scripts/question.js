@@ -34,4 +34,7 @@ $(document).ready(function () {
         alert("問題データを読み込めませんでした。");
         window.location.href = '../index.html';
     });
+
+    // 前のページへ戻るボタンの挿入
+    $('body').prepend('<button class="btn btn-secondary" onclick="history.back()" style="position: absolute; top: 10px; left: 10px;"><i class="fas fa-arrow-left"></i> 戻る</button>');
 });
