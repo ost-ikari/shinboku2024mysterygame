@@ -11,9 +11,25 @@
 </head>
 <body class="container mt-5">
     <h1 class="text-center mb-4">リアル脱出ゲームへようこそ</h1>
-    <div id="question-buttons" class="text-center"></div>
+    <ul class="nav nav-tabs" id="gameTabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="tab-group1" data-toggle="tab" href="#group1">問1グループ</a>
+        </li>
+        <li class="nav-item" id="tab-group2" style="display: none;">
+            <a class="nav-link" id="tab-group2-link" data-toggle="tab" href="#group2">問2グループ</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="group1">
+            <div id="question-buttons-group1" class="text-center mt-4"></div>
+        </div>
+        <div class="tab-pane fade" id="group2">
+            <div id="question-buttons-group2" class="text-center mt-4"></div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 </html>

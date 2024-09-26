@@ -1,34 +1,65 @@
 $(document).ready(function () {
-    const maxQuestions = 10;
-    const currentQuestion = parseInt(localStorage.getItem('currentQuestion')) || 1;
+    const group1Questions = 5; // 問1グループの問題数
+    const group2Questions = 5; // 問2グループの問題数
+    let group1Completed = true; // 問1グループの解答完了状況
 
-    // 問題ボタンの表示制御
-    for (let i = 1; i <= maxQuestions; i++) {
-        const answerKey = `answer${i}`;
+    // 問1グループのボタン表示
+    for (let i = 1; i <= group1Questions; i++) {
+        const answerKey = `answer1-${i}`;
         const isAnswered = localStorage.getItem(answerKey);
-        
-        if (i < currentQuestion) {
-            // 解答済みの問題は見直しボタンに変更
-            $('#question-buttons').append(
+
+        if (!isAnswered) group1Completed = false;
+
+        $('#question-buttons-group1').append(
+            `<div class="mb-3">
+                <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="1" data-question="${i}">
+                    問1-${i}の${isAnswered ? '解答を見直す <i class="fas fa-chevron-down"></i>' : '解答を入力する'}
+                </button>
+                <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
+            </div>`
+        );
+    }
+
+    // 問1グループが全問正解している場合に問2タブを表示
+    if (group1Completed) {
+        $('#tab-group2').show();
+    }
+
+    // 問2グループのボタン表示（問1が全問正解後にのみ表示）
+    if (group1Completed) {
+        let group2Completed = true; // 問2グループの解答完了状況
+        for (let i = 1; i <= group2Questions; i++) {
+            const answerKey = `answer2-${i}`;
+            const isAnswered = localStorage.getItem(answerKey);
+
+            if (!isAnswered) group2Completed = false;
+
+            $('#question-buttons-group2').append(
                 `<div class="mb-3">
-                    <button class="btn btn-success review-btn" data-question="${i}">問${i}の解答を見直す <i class="fas fa-chevron-down"></i></button>
-                    <div class="answer-display" style="display: none;">${isAnswered}</div>
+                    <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="2" data-question="${i}">
+                        問2-${i}の${isAnswered ? '解答を見直す <i class="fas fa-chevron-down"></i>' : '解答を入力する'}
+                    </button>
+                    <div class="answer-display" style="display: none;">${isAnswered || ''}</div>
                 </div>`
             );
-        } else if (i === currentQuestion) {
-            // 次の解答入力が必要な問題ボタン
-            $('#question-buttons').append(
-                `<button class="btn btn-primary mb-3" onclick="location.href='question_pages/question${i}.html'">問${i}の解答を入力する</button>`
-            );
+        }
+
+        // 問2が全問正解している場合、デバイスの上下反転で最終問題ボタン表示
+        if (group2Completed) {
+            window.addEventListener("deviceorientation", function(event) {
+                if (Math.abs(event.beta) > 150) { // デバイスがほぼ上下逆さの場合
+                    if ($('#final-question-button').length === 0) {
+                        $('body').append('<button id="final-question-button" class="btn btn-warning mt-5">最終問題に挑戦する</button>');
+                    }
+                }
+            });
         }
     }
 
-    // ボタンの開閉動作
+    // 解答見直しボタンの開閉機能
     $('.review-btn').click(function () {
         const $answerDisplay = $(this).next('.answer-display');
         $answerDisplay.slideToggle();
-
-        // 矢印の向きを変更
         const $icon = $(this).find('i');
         $icon.toggleClass('fa-chevron-down fa-chevron-up');
     });
