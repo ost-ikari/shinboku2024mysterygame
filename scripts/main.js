@@ -75,14 +75,6 @@ $(document).ready(function () {
         // 問2タブを選択した状態で表示
         $('#tab-group2-link').tab('show');
     }
-
-    // 解答見直しボタンの開閉機能
-    $('.review-btn').click(function () {
-        const $answerDisplay = $(this).next('.answer-display');
-        $answerDisplay.slideToggle();
-        const $icon = $(this).find('i');
-        $icon.toggleClass('fa-chevron-down fa-chevron-up');
-    });
 });
 
 // 解答表示の開閉関数
