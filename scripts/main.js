@@ -20,11 +20,15 @@ $(document).ready(function () {
         );
     }
 
-    // 問1グループが全問正解している場合のみタブを表示
-    if (group1Completed) {
+    // 問1グループのボタンがあれば問1のタブを表示
+    if ($('#question-buttons-group1').children().length > 0) {
         $('#gameTabs').show();
         $('#tab-group1').addClass('active');
         $('#group1').addClass('show active');
+    }
+
+    // 問1グループが全問正解している場合のみ問2グループのタブを表示
+    if (group1Completed) {
         $('#tab-group2').show();
 
         let group2Completed = true; // 問2グループの解答完了状況
