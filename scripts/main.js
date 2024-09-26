@@ -8,8 +8,10 @@ $(document).ready(function () {
         const answerKey = `answer1-${i}`;
         const isAnswered = localStorage.getItem(answerKey);
 
+        // 問1-1～問1-5のいずれかが未解答の場合、問1グループは未完了
         if (!isAnswered) group1Completed = false;
 
+        // ボタン表示
         $('#question-buttons-group1').append(
             `<div class="mb-3">
                 <button class="btn btn-${isAnswered ? 'success' : 'primary'} review-btn" data-group="1" data-question="${i}" onclick="location.href='question_pages/question1-${i}.html'">
@@ -20,13 +22,15 @@ $(document).ready(function () {
         );
     }
 
-    // 問1グループが全問正解している場合にタブを表示
-    if (group1Completed) {
-        $('#gameTabs').show();
+    // タブの表示制御
+    if (group1Questions > 0) {
+        $('#gameTabs').show(); // 問1グループのボタンがあればタブを表示
         $('#tab-group1').addClass('active');
         $('#group1').addClass('show active');
+    }
 
-        // 問2グループのタブを表示
+    // 問1グループが全問正解している場合のみ問2グループのタブを表示
+    if (group1Completed) {
         $('#tab-group2').show();
 
         let group2Completed = true; // 問2グループの解答完了状況
