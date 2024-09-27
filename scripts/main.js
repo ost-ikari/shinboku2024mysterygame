@@ -25,7 +25,7 @@ $(document).ready(function () {
     }
 
     // 最終問題ボタン表示の条件設定
-    if (localStorage.getItem('answer10')) {
+    if (localStorage.getItem('answer5')) {
         window.addEventListener("orientationchange", function() {
             if (window.matchMedia("(orientation: portrait)").matches) { // 縦画面に戻った時
                 if ($('#final-question-button').length === 0) {
