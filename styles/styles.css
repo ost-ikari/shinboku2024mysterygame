@@ -52,30 +52,36 @@ body {
     margin: 10px;
     padding: 10px 20px;
     font-size: 1.2rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* ボタンに影を追加 */
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #4a90e2, #0072bc);
+    background: linear-gradient(135deg, #005bb5, #0073e6); /* 明るいブルーのグラデーション */
     border: none;
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #5cb85c, #4cae4c);
-    border: none;
-}
-
-.btn-danger {
-    background: linear-gradient(135deg, #d9534f, #c9302c);
+    background: linear-gradient(135deg, #3a8b3a, #4caf50); /* 明るいグリーンのグラデーション */
     border: none;
 }
 
 .btn-info {
-    background: linear-gradient(135deg, #5bc0de, #31b0d5);
+    background: linear-gradient(135deg, #1e7b92, #28a9d9); /* 明るいブルーグリーンのグラデーション */
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #8b0000, #a00000); /* 濃いレッドのグラデーション */
+    border: none;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #555555, #777777); /* グレー基調のグラデーション */
     border: none;
 }
 
 .answer-display {
-    margin-top: 10px;
+    margin: 10px 20px; /* 左右のマージンを増やして調整 */
     padding: 10px;
     border: 1px solid #fff;
     border-radius: 5px;
@@ -90,4 +96,15 @@ body {
 .alert {
     width: 100%;
     max-width: 500px;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px; /* ボタンと問題文が被らないように調整 */
+    left: 10px;
+    z-index: 10;
+}
+
+#question-text {
+    margin-top: 60px; /* 問題文の上マージンを拡げて、戻るボタンと被らないように調整 */
 }

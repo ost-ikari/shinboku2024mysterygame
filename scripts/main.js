@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    const group1Questions = 5; // 問1グループの問題数
-    const group2Questions = 5; // 問2グループの問題数
+    const group1Questions = 3; // 問1グループの問題数
+    const group2Questions = 3; // 問2グループの問題数
     let group1Completed = true; // 問1グループの解答完了状況
 
     // 問1グループのボタン表示
