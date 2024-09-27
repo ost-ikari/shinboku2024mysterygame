@@ -4,27 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>脱出ゲーム</title>
+    <title>スーパーハカーからの挑戦状</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link href="styles/styles.css" rel="stylesheet">
 </head>
-<body class="container mt-5">
-    <h1 class="text-center mb-4">リアル脱出ゲームへようこそ</h1>
-    <ul class="nav nav-tabs" id="gameTabs" style="display: none;">
-        <li class="nav-item">
-            <a class="nav-link" id="tab-group1" data-toggle="tab" href="#group1">問1グループ</a>
-        </li>
-        <li class="nav-item" id="tab-group2" style="display: none;">
-            <a class="nav-link" id="tab-group2-link" data-toggle="tab" href="#group2">問2グループ</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane fade" id="group1">
-            <div id="question-buttons-group1" class="text-center mt-4"></div>
-        </div>
-        <div class="tab-pane fade" id="group2">
-            <div id="question-buttons-group2" class="text-center mt-4"></div>
+<body>
+    <header class="title-container">
+        <h1 class="text-center title">
+            <span class="title-small">スーパーハカーからの</span><br>
+            <span class="title-large">挑戦状</span>
+        </h1>
+    </header>
+
+    <div class="container mt-5">
+        <ul class="nav nav-tabs justify-content-center" id="gameTabs" style="display: none;">
+            <li class="nav-item">
+                <a class="nav-link" id="tab-group1" data-toggle="tab" href="#group1">問1</a>
+            </li>
+            <li class="nav-item" id="tab-group2" style="display: none;">
+                <a class="nav-link" id="tab-group2-link" data-toggle="tab" href="#group2">問2</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="group1">
+                <div id="question-buttons-group1" class="text-center mt-4"></div>
+            </div>
+            <div class="tab-pane fade" id="group2">
+                <div id="question-buttons-group2" class="text-center mt-4"></div>
+            </div>
         </div>
     </div>
 
