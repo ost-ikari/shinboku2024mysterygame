@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const pagePath = window.location.pathname;
-    const questionId = pagePath.match(/question(\d-\d+)/)[1];
+    const questionId = pagePath.match(/question(\d+)/)[1];
 
     // JSONファイルから問題データを取得
     $.getJSON('../questions.json', function (data) {
