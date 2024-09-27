@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const totalQuestions = 5; // 全体の問題数
+    const totalQuestions = 3; // 全体の問題数
 
     // 各問題のボタン表示
     for (let i = 1; i <= totalQuestions; i++) {
@@ -25,7 +25,7 @@ $(document).ready(function () {
     }
 
     // 最終問題ボタン表示の条件設定
-    if (localStorage.getItem('answer5')) {
+    if (localStorage.getItem('answer3')) {
         window.addEventListener("orientationchange", function() {
             if (window.matchMedia("(orientation: portrait)").matches) { // 縦画面に戻った時
                 if ($('#final-question-button').length === 0) {
