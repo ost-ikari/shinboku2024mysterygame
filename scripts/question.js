@@ -2,7 +2,6 @@ $(document).ready(function () {
     const pagePath = window.location.pathname;
     const questionId = pagePath.match(/question(\d+)/)[1];
 
-    // JSONファイルから問題データを取得
     $.getJSON('../questions.json', function (data) {
         const question = data.questions.find(q => q.id === questionId);
 
@@ -12,33 +11,45 @@ $(document).ready(function () {
             return;
         }
 
-        // 問題文の設定
         $('#question-text').text(question.question).show();
 
-        // ヒントボタンの機能
-        $('#view-hint').click(function () {
-            $('#hint').text(question.hint).show();
-        });
+        // ヒント表示のためのタイマー処理
+        const prevQuestionId = parseInt(questionId) - 1;
+        const prevTimestamp = localStorage.getItem(`timestamp_answer${prevQuestionId}`);
+        const currentTime = Date.now();
+        const elapsedSeconds = prevTimestamp ? (currentTime - prevTimestamp) / 1000 : 0;
 
-        // 解答チェック
+        if (question.hints.length > 0 && elapsedSeconds >= question.hint_delay) {
+            question.hints.forEach((hint, index) => {
+                $('#hints').append(
+                    `<button class="btn btn-info mt-2 hint-btn" id="hint-btn-${index}">
+                        <i class="fas fa-lightbulb"></i> ヒント${index + 1}
+                    </button>
+                    <div class="hint-text mt-2" id="hint-text-${index}" style="display: none;">${hint}</div>`
+                );
+
+                $(`#hint-btn-${index}`).click(function () {
+                    $(`#hint-text-${index}`).toggle();
+                });
+            });
+        }
+
         $('#submit-answer').click(function () {
             const userAnswer = $('#answer-input').val().trim();
             if (userAnswer === question.answer) {
-                // 解答をローカルストレージに保存
                 localStorage.setItem(`answer${question.id}`, userAnswer);
+                localStorage.setItem(`timestamp_answer${question.id}`, Date.now());
                 window.location.href = '../question_pages/correct.html';
             } else {
                 window.location.href = '../question_pages/incorrect.html';
             }
         });
-    }).fail(function() {
+    }).fail(function () {
         alert("問題データを読み込めませんでした。");
         window.location.href = '../index.html';
     });
 
-    // 前のページへ戻るボタンの挿入
     $('body').prepend('<button class="btn btn-secondary back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> 戻る</button>');
 
-    // オートコンプリート無効化
     $('#answer-input').attr('autocomplete', 'off');
 });
