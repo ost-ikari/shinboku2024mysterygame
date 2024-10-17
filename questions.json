@@ -5,35 +5,40 @@
       "question": "問題1の内容",
       "answer": "あ",
       "hint_delay": 0,
-      "hints": ["ヒント1の内容"]
+      "hints": ["ヒント1の内容"],
+      "success_message": "正解後のメッセージがここにはいります"
     },
     {
       "id": "2",
       "question": "問題2の内容",
       "answer": "あ",
       "hint_delay": 10,
-      "hints": ["ヒント1", "ヒント2", "ヒント3", "ヒント4", "ヒント5"]
+      "hints": ["ヒント1", "ヒント2", "ヒント3", "ヒント4", "ヒント5"],
+      "success_message": "正解後のメッセージがここにはいります"
     },
     {
       "id": "3",
       "question": "問題3の内容",
       "answer": "あ",
       "hint_delay": 10,
-      "hints": ["ヒント1", "ヒント2"]
+      "hints": ["ヒント1", "ヒント2"],
+      "success_message": "正解後のメッセージがここにはいります"
     },
     {
       "id": "4",
       "question": "問題4の内容",
       "answer": "あ",
       "hint_delay": 10,
-      "hints": ["ヒント1", "ヒント2"]
+      "hints": ["ヒント1", "ヒント2"],
+      "success_message": "正解後のメッセージがここにはいります"
     },
     {
       "id": "5",
       "question": "問題5の内容",
       "answer": "あ",
       "hint_delay": 10,
-      "hints": ["ヒント1", "ヒント2"]
+      "hints": ["ヒント1", "ヒント2"],
+      "success_message": "正解後のメッセージがここにはいります"
     }
   ]
 }

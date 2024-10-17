@@ -1,7 +1,8 @@
 $(document).ready(function () {
     const pagePath = window.location.pathname;
-    const questionId = pagePath.match(/question(\d+)/)[1];
+    const questionId = pagePath.match(/question(\d+)/)[1]; // URLから問題IDを取得
 
+    // JSONから問題データを取得
     $.getJSON('../questions.json', function (data) {
         const question = data.questions.find(q => q.id === questionId);
 
@@ -11,10 +12,11 @@ $(document).ready(function () {
             return;
         }
 
+        // 問題文の表示
         $('#question-text').text(question.question).show();
 
-        // ヒント表示のためのタイマー処理
-        const prevQuestionId = parseInt(questionId) - 1;
+        // ヒント表示の制御
+        const prevQuestionId = (parseInt(questionId) - 1).toString();
         const prevTimestamp = localStorage.getItem(`timestamp_answer${prevQuestionId}`);
         const currentTime = Date.now();
         const elapsedSeconds = prevTimestamp ? (currentTime - prevTimestamp) / 1000 : 0;
@@ -22,26 +24,31 @@ $(document).ready(function () {
         if (question.hints.length > 0 && elapsedSeconds >= question.hint_delay) {
             question.hints.forEach((hint, index) => {
                 $('#hints').append(
-                    `<button class="btn btn-info mt-2 hint-btn" id="hint-btn-${index}">
-                        <i class="fas fa-lightbulb"></i> ヒント${index + 1}
+                    `<button class="btn btn-info hint-btn" id="hint-btn-${index}">
+                        <i class="fas fa-lightbulb"></i> ヒント${index + 1}をみる
                     </button>
-                    <div class="hint-text mt-2" id="hint-text-${index}" style="display: none;">${hint}</div>`
+                    <div class="hint-text" id="hint-text-${index}" style="display: none;">${hint}</div>`
                 );
 
                 $(`#hint-btn-${index}`).click(function () {
-                    $(`#hint-text-${index}`).toggle();
+                    $(`#hint-text-${index}`).slideToggle();
                 });
             });
         }
 
+        // 解答送信の処理
         $('#submit-answer').click(function () {
             const userAnswer = $('#answer-input').val().trim();
+
             if (userAnswer === question.answer) {
+                // 正解した問題IDと解答をlocalStorageに保存
                 localStorage.setItem(`answer${question.id}`, userAnswer);
                 localStorage.setItem(`timestamp_answer${question.id}`, Date.now());
-                window.location.href = '../question_pages/correct.html';
+                localStorage.setItem('lastAnsweredQuestion', question.id); // 正しいIDの保存
+
+                window.location.href = '../question_pages/correct.html'; // 正解ページに遷移
             } else {
-                window.location.href = '../question_pages/incorrect.html';
+                window.location.href = '../question_pages/incorrect.html'; // 不正解ページに遷移
             }
         });
     }).fail(function () {

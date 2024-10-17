@@ -2,35 +2,43 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正解</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles/styles.css" rel="stylesheet">
-    <style>
-        .icon-container {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: #28a745;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-        .icon-container i {
-            color: #ffffff;
-            font-size: 100px;
-        }
-    </style>
 </head>
 <body class="container mt-5 text-center">
-    <div class="icon-container">
-        <i class="fas fa-check-circle"></i>
+    <div class="icon-container mb-4">
+        <i class="fas fa-check-circle" style="font-size: 5rem; color: #4caf50;"></i> <!-- チェックマークアイコン -->
     </div>
-    <h1 class="mb-4">正解です！</h1>
-    <button class="btn btn-primary" onclick="location.href='../index.html'">次へ進む</button>
+    <h1>正解です！</h1>
+    <p id="success-message" class="mt-3"></p> <!-- JSONから取得するメッセージ -->
+    <button class="btn btn-primary mt-4" onclick="window.location.href='../index.html'">TOPに戻る</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const questionId = localStorage.getItem('lastAnsweredQuestion'); // 保存されたIDを取得
+
+            if (!questionId) {
+                document.getElementById('success-message').textContent = "メッセージが見つかりません。";
+                return;
+            }
+
+            // JSONから該当するメッセージを取得
+            $.getJSON('../questions.json', function (data) {
+                const question = data.questions.find(q => q.id === questionId.toString()); // IDの一致を確認
+
+                if (question && question.success_message) {
+                    document.getElementById('success-message').textContent = question.success_message;
+                } else {
+                    document.getElementById('success-message').textContent = "おめでとうございます！";
+                }
+            }).fail(() => {
+                document.getElementById('success-message').textContent = "メッセージの取得に失敗しました。";
+            });
+        });
+    </script>
 </body>
 </html>
