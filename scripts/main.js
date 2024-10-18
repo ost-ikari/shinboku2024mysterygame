@@ -1,12 +1,21 @@
 $(document).ready(function () {
-    const totalQuestions = 5;
+    let tapCount = 0; // タップ回数をカウントする変数
+    const totalQuestions = 10;
+
+    $('#logo').on('click', function () {
+        tapCount++;
+
+        if (tapCount === 5 && localStorage.getItem('answer5') !== null) {
+            // 問5が正解済みかつ5回タップされた場合、パスコードを表示
+            $('#passcode-display').fadeIn();
+        }
+    });
 
     // 各問題のボタンを表示する処理
     for (let i = 1; i <= totalQuestions; i++) {
         const answerKey = `answer${i}`;
-        const storedAnswer = localStorage.getItem(answerKey); // 保存された解答を取得
-
-        const isAnswered = storedAnswer !== null; // 正解済みかどうかを確認
+        const storedAnswer = localStorage.getItem(answerKey);
+        const isAnswered = storedAnswer !== null;
 
         const buttonLabel = isAnswered ? `問${i}の解答を見直す` : `問${i}の解答を入力する`;
         const buttonIcon = isAnswered ? 'fa-chevron-down' : 'fa-pencil-alt';
@@ -14,7 +23,6 @@ $(document).ready(function () {
             ? `toggleAnswerDisplay('answer-display-${i}')`
             : `location.href='question_pages/question${i}.html'`;
 
-        // 最初の問題、または前の問題が正解済みの場合に表示
         if (i === 1 || localStorage.getItem(`answer${i - 1}`) !== null) {
             $('#question-buttons').append(
                 `<div class="mb-3">
@@ -25,17 +33,6 @@ $(document).ready(function () {
                 </div>`
             );
         }
-    }
-
-    // 最終問題ボタン表示の条件設定
-    if (localStorage.getItem('answer5')) {
-        window.addEventListener("orientationchange", function() {
-            if (window.matchMedia("(orientation: portrait)").matches) { // 縦画面に戻った時
-                if ($('#final-question-button').length === 0) {
-                    $('#question-buttons').append('<button id="final-question-button" class="btn btn-warning mt-5"><i class="fas fa-flag-checkered"></i> 最終問題に挑戦する</button>');
-                }
-            }
-        });
     }
 });
 

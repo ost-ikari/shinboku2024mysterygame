@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="title-container">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="logo.png" alt="Logo" class="logo" id="logo">
         <h1 class="text-center title">
             <span class="title-small">スーパーハカーからの</span><br>
             <span class="title-large">挑戦状</span>
@@ -19,6 +19,10 @@
 
     <div class="container mt-5">
         <div id="question-buttons" class="text-center"></div>
+    </div>
+
+    <div id="passcode-display" class="text-center mt-4" style="display: none;">
+        <p class="passcode">パスコード: 12345</p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
