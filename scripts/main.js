@@ -43,3 +43,10 @@ function toggleAnswerDisplay(displayId) {
     const $icon = $(`#${displayId}`).prev().find('i');
     $icon.toggleClass('fa-chevron-down fa-chevron-up');
 }
+
+// モーダルの開閉を制御する処理
+$('#rulesModal').on('show.bs.modal', function (event) {
+    const button = $(event.relatedTarget); // モーダルをトリガーしたボタン
+    const modal = $(this);
+    modal.find('.modal-body').text('ここにルール説明の内容が入ります。');
+});

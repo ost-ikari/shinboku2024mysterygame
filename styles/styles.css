@@ -97,3 +97,23 @@ body {
     color: #ffcc00;
     text-shadow: 0px 0px 10px rgba(255, 204, 0, 0.8);
 }
+
+/* Modal styles */
+.modal-content {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #444;
+}
+
+.modal-footer {
+    border-top: 1px solid #444;
+}
+
+.modal-body {
+    padding: 20px;
+}
