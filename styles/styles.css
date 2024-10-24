@@ -123,10 +123,27 @@ body {
     /* background-color: transparent !important; */
 }
 
-.bth:active, .btn:focus {
+.btn-primary:active, .btn-primary:focus {
     box-shadow: none !important;
 }
 
 .btn-primary, .btn-success {
     background-image: radial-gradient(circle at 100% 0%, rgba(94, 138, 243, 1) 15%, rgba(243, 61, 223, 1)) !important;
+}
+
+/* ルール説明ボタンを常にページ下部に表示 */
+.rules-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    font-weight: bold;
+    border: 2px solid #333333;
+    box-shadow: 5px 5px 0px 0px rgba(51, 51, 51, 1);
+    background-color: #ffffff !important;
+}
+
+.rules-button:active, .rules-button:focus {
+    box-shadow: 5px 5px 0px 0px rgba(51, 51, 51, 1) !important;
 }
