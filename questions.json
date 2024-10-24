@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": "1",
-      "question": "問題1の内容",
+      "question": "問1.",
       "answer": "あ",
       "hint_delay": 0,
       "hints": ["ヒント1の内容"],
@@ -10,7 +10,7 @@
     },
     {
       "id": "2",
-      "question": "問題2の内容",
+      "question": "問2.",
       "answer": "あ",
       "hint_delay": 10,
       "hints": ["ヒント1", "ヒント2", "ヒント3", "ヒント4", "ヒント5"],
@@ -18,7 +18,7 @@
     },
     {
       "id": "3",
-      "question": "問題3の内容",
+      "question": "問3.",
       "answer": "あ",
       "hint_delay": 10,
       "hints": ["ヒント1", "ヒント2"],
@@ -26,7 +26,7 @@
     },
     {
       "id": "4",
-      "question": "問題4の内容",
+      "question": "問4.",
       "answer": "あ",
       "hint_delay": 10,
       "hints": ["ヒント1", "ヒント2"],
@@ -34,7 +34,7 @@
     },
     {
       "id": "5",
-      "question": "問題5の内容",
+      "question": "問5.",
       "answer": "あ",
       "hint_delay": 10,
       "hints": ["ヒント1", "ヒント2"],
